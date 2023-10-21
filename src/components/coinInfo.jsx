@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
+import { Link } from "react-router-dom";
 
 const CoinInfo = ({ image, name, symbol }) => {
     const [price, setPrice] = useState(null);   
@@ -15,6 +16,10 @@ const CoinInfo = ({ image, name, symbol }) => {
 
     return (
         <div>
+          <Link
+            to={`/coinDetails/${symbol}`}
+            key={symbol}
+          >
           {price ? ( // rendering only if API call actually returned us data
             <li className="main-list" key={symbol}>
                 <img
@@ -28,6 +33,7 @@ const CoinInfo = ({ image, name, symbol }) => {
           ) : 
           null
           }
+          </Link>
         </div>
       );
   };
